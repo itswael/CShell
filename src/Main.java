@@ -10,12 +10,16 @@ public class Main {
         // 1. Take input from the user via command Line
         String input = scanner.nextLine();
         // 2. Parse the command from the input text
+        String Command = input.split(" ")[0];
         // 3. Call the respective functionality to execute the command
             // a. fetch the required parameters from the input text
             // b. execute the command
             // c. return the output of the command to main function
         // 4. Display the output received from the subFunction on the console
         // If the command is not supported Display Invalid Command
-        System.out.println("Invalid Command");
+        if(Command.equals("echo"))
+            System.out.println(input.substring(5));
+        else
+            System.out.println("Invalid Command");
     }
 }
