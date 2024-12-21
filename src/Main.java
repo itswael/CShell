@@ -19,6 +19,8 @@ public class Main {
         // If the command is not supported Display Invalid Command
         if(Command.equals("echo"))
             System.out.println(input.substring(5));
+        else if(Command.equals("exit"))
+            System.exit(0);
         else
             System.out.println("Invalid Command");
     }
