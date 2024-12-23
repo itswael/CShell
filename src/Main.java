@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in); // helper to take the input
         ArrayList<String> commands = new ArrayList<>(Arrays.asList("exit", "echo", "type"));
+        String cwd = Path.of("").toAbsolutePath().toString();
         while(true) {
             // 1. Take input from the user via command Line
             System.out.print("$ "); //prompt to display by default at the start of each input line
@@ -38,6 +39,19 @@ public class Main {
                     } else {
                         System.out.println(param + ": not found");
                     }
+                }
+            }else if(Command.equals("pwd")){
+                System.out.println(cwd);
+            }else if (input.startsWith("cd ")) {
+                String dir = input.substring(3);
+                if (!dir.startsWith("/")) {
+                    dir = cwd + "/" + dir;
+                }
+                if (Files.isDirectory(Path.of(dir))) {
+                    //cwd = dir;
+                    cwd = Path.of(dir).normalize().toString();
+                } else {
+                    System.out.printf("cd: %s: No such file or directory%n", dir);
                 }
             }else {
                 String command = input.split(" ")[0];
